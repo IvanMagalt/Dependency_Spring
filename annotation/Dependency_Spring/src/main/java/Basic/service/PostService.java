@@ -2,18 +2,18 @@ package service;
 
 import exception.NotFoundException;
 import model.Post;
-import repository.PostRepository;
+import repository.IPostRepository;
 
-import java.util.Collection;
+import java.util.List;
 
 public class PostService {
-    private final PostRepository repository;
+    private final IPostRepository repository;
 
-    public PostService(PostRepository repository) {
+    public PostService(IPostRepository repository) {
         this.repository = repository;
     }
 
-    public Collection<Post> all() {
+    public List<Post> all() {
         return repository.all();
     }
 
