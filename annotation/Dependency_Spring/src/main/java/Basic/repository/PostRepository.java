@@ -1,27 +1,23 @@
 package Basic.repository;
 
 import Basic.model.Post;
-import Basic.exception.NotFoundException;
-import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.atomic.AtomicLong;
 
-@Repository
-public class PostRepository implements IPostRepository {
+public class PostRepository {
     private final ConcurrentMap<Long, Post> allPosts;
-    private final AtomicLong idCounter = new AtomicLong(0L);
+    private final AtomicLong idCounter = new AtomicLong();
 
     public PostRepository() {
-        allPosts = new ConcurrentHashMap<>();
+        this.allPosts = new ConcurrentHashMap<>();
     }
 
-    public List<Post> all() {
-        return new ArrayList<>(allPosts.values());
+    public Collection<Post> all() {
+        return allPosts.values();
     }
 
     public Optional<Post> getById(long id) {
@@ -41,10 +37,6 @@ public class PostRepository implements IPostRepository {
     }
 
     public void removeById(long id) {
-        if (allPosts.containsKey(id)) {
-            allPosts.remove(id);
-        } else {
-            throw new NotFoundException("Wrong id");
-        }
+        allPosts.remove(id);
     }
 }
