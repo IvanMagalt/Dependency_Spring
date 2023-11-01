@@ -1,4 +1,4 @@
-package exception;
+package Basic.exception;
 
 public class NotFoundException extends RuntimeException {
     public NotFoundException() {

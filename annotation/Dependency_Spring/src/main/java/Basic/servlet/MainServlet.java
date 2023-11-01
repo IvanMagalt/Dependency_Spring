@@ -1,9 +1,8 @@
-package servlet;
+package Basic.servlet;
 
-import Di_java.JavaConfig;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import controller.PostController;
-import exception.NotFoundException;
+import Basic.controller.PostController;
+import Basic.exception.NotFoundException;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,7 +16,7 @@ public class MainServlet extends HttpServlet {
 
     @Override
     public void init() {
-        final var context = new AnnotationConfigApplicationContext(JavaConfig.class);
+        final var context = new AnnotationConfigApplicationContext("main.java.Basic");
         controller = context.getBean(PostController.class);
     }
 
